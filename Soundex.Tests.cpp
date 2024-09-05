@@ -10,5 +10,10 @@ TEST(SoundexTest, HandlesSingleCharacter) {
     EXPECT_EQ(generateSoundex("A"), "A000");
 }
 
+TEST(SoundexTest, HandlesNames) {
+    EXPECT_EQ(generateSoundex("Chandra"), "C535");
+    EXPECT_EQ(generateSoundex("Ramesh"), "R520");
+    EXPECT_EQ(generateSoundex("Kumar"), "K560");
+}
 
 
