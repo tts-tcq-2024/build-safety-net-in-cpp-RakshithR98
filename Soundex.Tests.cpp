@@ -17,8 +17,8 @@ TEST(SoundexTest, HandlesNames) {
 }
 
 TEST(SoundexTest, HandlesDigitsInMiddle) {
-    EXPECT_EQ(generateSoundex("Alex1nder"), "A252");
+    EXPECT_EQ(generateSoundex("Alex1nder"), "A425");
     EXPECT_EQ(generateSoundex("John2Smith"), "J525");
-    EXPECT_EQ(generateSoundex("M4ry"), "M060");
+    EXPECT_EQ(generateSoundex("M4ry"), "M600");
 }
 
