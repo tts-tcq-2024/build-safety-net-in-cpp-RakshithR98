@@ -16,4 +16,9 @@ TEST(SoundexTest, HandlesNames) {
     EXPECT_EQ(generateSoundex("Kumar"), "K560");
 }
 
+TEST(SoundexTest, HandlesNamesWithNumbersAndSymbols) {
+    EXPECT_EQ(generateSoundex("J2K"), "J020"); // Numbers converted to zeros
+    EXPECT_EQ(generateSoundex("K!@#"), "K000"); // Special symbols converted to zeros
+    EXPECT_EQ(generateSoundex("M1ke"), "M020"); // Mixed numbers and letters
+}
 
