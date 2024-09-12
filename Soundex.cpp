@@ -1,6 +1,7 @@
 #include "Soundex.h"
 #include <cctype>
 
+// Function to get Soundex code for a character
 char getSoundexCode(char c) {
     c = toupper(c);
     switch (c) {
@@ -10,14 +11,15 @@ char getSoundexCode(char c) {
         case 'L': return '4';
         case 'M': case 'N': return '5';
         case 'R': return '6';
-        default: return '0'; // For A, E, I, O, U, H, W, Y
+        default: return '0'; 
     }
 }
 
+// Main function to generate Soundex code
 std::string generateSoundex(const std::string& name) {
     if (name.empty()) return "";
 
-    std::string soundex(1, toupper(name[0]));
+    std::string soundex(1, toupper(name[0])); // Start with the first letter
     char prevCode = getSoundexCode(name[0]);
 
     for (size_t i = 1; i < name.length() && soundex.length() < 4; ++i) {
@@ -28,9 +30,8 @@ std::string generateSoundex(const std::string& name) {
         }
     }
 
-    while (soundex.length() < 4) {
-        soundex += '0';
-    }
+    // Ensure the Soundex code is 4 characters long
+    soundex.resize(4, '0');
 
     return soundex;
 }
