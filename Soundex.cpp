@@ -11,38 +11,27 @@ char getSoundexCode(char c) {
         case 'L': return '4';
         case 'M': case 'N': return '5';
         case 'R': return '6';
-        default: return '0'; // For A, E, I, O, U, H, W, Y
+        default: return '0'; 
     }
-}
-
-// Function to process Soundex encoding
-std::string processSoundex(const std::string& name) {
-    std::string soundex(1, toupper(name[0])); // Start with the first letter
-    char prevCode = getSoundexCode(name[0]);
-
-    for (size_t i = 1; i < name.length() && soundex.length() < 4; ++i) {
-        char code = getSoundexCode(name[i]);
-        if (code != '0') {
-            if (code != prevCode) {
-                soundex += code;
-                prevCode = code;
-            }
-        }
-    }
-
-    return soundex;
 }
 
 // Main function to generate Soundex code
 std::string generateSoundex(const std::string& name) {
     if (name.empty()) return "";
 
-    std::string soundex = processSoundex(name);
+    std::string soundex(1, toupper(name[0])); // Start with the first letter
+    char prevCode = getSoundexCode(name[0]);
+
+    for (size_t i = 1; i < name.length() && soundex.length() < 4; ++i) {
+        char code = getSoundexCode(name[i]);
+        if (code != '0' && code != prevCode) {
+            soundex += code;
+            prevCode = code;
+        }
+    }
 
     // Ensure the Soundex code is 4 characters long
-    while (soundex.length() < 4) {
-        soundex += '0';
-    }
+    soundex.resize(4, '0');
 
     return soundex;
 }
